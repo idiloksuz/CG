@@ -17,42 +17,49 @@
  * window.
  */
 class MainView : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core {
-  Q_OBJECT
+    Q_OBJECT
 
- public:
-  MainView(QWidget *parent = nullptr);
-  ~MainView() override;
+public:
+    MainView(QWidget *parent = nullptr);
+    ~MainView() override;
 
-  // Functions for widget input events
-  void setRotation(int rotateX, int rotateY, int rotateZ);
-  void setScale(float scale);
+    // Functions for widget input events
+    void setRotation(int rotateX, int rotateY, int rotateZ);
+    void setScale(float scale);
 
- protected:
-  void initializeGL() override;
-  void resizeGL(int newWidth, int newHeight) override;
-  void paintGL() override;
+protected:
+    void initializeGL() override;
+    void resizeGL(int newWidth, int newHeight) override;
+    void paintGL() override;
 
-  // Functions for keyboard input events
-  void keyPressEvent(QKeyEvent *ev) override;
-  void keyReleaseEvent(QKeyEvent *ev) override;
+    // Functions for keyboard input events
+    void keyPressEvent(QKeyEvent *ev) override;
+    void keyReleaseEvent(QKeyEvent *ev) override;
 
-  // Function for mouse input events
-  void mouseDoubleClickEvent(QMouseEvent *ev) override;
-  void mouseMoveEvent(QMouseEvent *ev) override;
-  void mousePressEvent(QMouseEvent *ev) override;
-  void mouseReleaseEvent(QMouseEvent *ev) override;
-  void wheelEvent(QWheelEvent *ev) override;
+    // Function for mouse input events
+    void mouseDoubleClickEvent(QMouseEvent *ev) override;
+    void mouseMoveEvent(QMouseEvent *ev) override;
+    void mousePressEvent(QMouseEvent *ev) override;
+    void mouseReleaseEvent(QMouseEvent *ev) override;
+    void wheelEvent(QWheelEvent *ev) override;
 
- private slots:
-  void onMessageLogged(QOpenGLDebugMessage Message);
+private slots:
+    void onMessageLogged(QOpenGLDebugMessage Message);
 
- private:
-  QOpenGLDebugLogger debugLogger;
-  QTimer timer;  // timer used for animation
+private:
+    QOpenGLDebugLogger debugLogger;
+    QTimer timer;  // timer used for animation
 
-  QOpenGLShaderProgram shaderProgram;
+    QOpenGLShaderProgram shaderProgram;
 
-  void createShaderProgram();
+private:
+    GLuint vbo;
+
+private:
+    GLuint vao;
+
+
+    void createShaderProgram();
 };
 
 #endif  // MAINVIEW_H
